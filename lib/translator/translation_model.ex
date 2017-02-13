@@ -15,7 +15,7 @@ defmodule Translator.TranslationModel do
 
         belongs_to @parent_atom, @belongs_to
 
-        timestamps
+        timestamps(inserted_at: @timestamp_insert_column)
       end
 
       def changeset(translation, params \\ %{}) do
@@ -58,6 +58,7 @@ defmodule Translator.TranslationModel do
       @required_fields unquote(opts)[:required_fields] || raise ":required_fields must be given."
       @optional_fields unquote(opts)[:optional_fields] || []
       @assoc unquote(opts)[:assoc] || :translation
+      @timestamp_insert_column unquote(opts)[:timestamp_insert_column] || :inserted_at
     end
   end
 end
